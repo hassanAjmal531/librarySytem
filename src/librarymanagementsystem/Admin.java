@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import static librarymanagementsystem.login.conn;
 
 /**
@@ -201,6 +202,67 @@ public class Admin extends person {
         }
         
         
+        return false;
+    }
+    
+    public boolean addBooks(){
+        
+    
+        return false;
+    }
+    
+    public ResultSet viewfines(){
+        try{
+            conn c = new conn();
+            PreparedStatement s;
+            String sql = "select member.id, member.fname, member.lname, member.fine from member";
+            s = c.c.prepareStatement(sql);
+            ResultSet rs = s.executeQuery();
+            return rs;
+        
+        }catch(Exception e){
+    
+            e.printStackTrace();
+        }
+        return null;
+    
+    }
+    
+    public boolean ResolveFines(int amount, int id){
+        int fine = 0;
+        int total = 0;
+        conn c = new conn();
+        try{
+            String sql = "select member.id, member.fname, member.lname, member.fine from member where id = ?";
+            PreparedStatement s = c.c.prepareStatement(sql);
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            if(rs.next()){
+                fine = rs.getInt(4);
+                if (amount > fine){
+                    JOptionPane.showMessageDialog(null, "please enter the correct amount, the ammount entered is greater than the amount of fine");
+                    
+                }
+                else{
+                    total = fine - amount;
+                    sql = "update member set fine = ? where id = ?";
+                    s = c.c.prepareStatement(sql);
+                    s.setInt(1, total);
+                    s.setInt(2, id);
+                    s.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "updated");
+                    
+                }
+                
+            }
+                
+        
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        
+    
         return false;
     }
     

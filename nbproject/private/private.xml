@@ -3,28 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Member.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/managebooks.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/searchBooks.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/manageMembers.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/UpdateMembers.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/AddBook.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/login.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/LibraryManagementSystem.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/userScreen.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/AdminLogin.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/FacultyRegistration.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/updateBooks.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/faculty.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Book.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/person.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Admin.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/conn.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/adminScreen.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/studentRegistration.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/UpdatBook.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/student.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/newRegistration.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/updatestudent.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/AddBook.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/ViewAndResolveFine.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/managebooks.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/conn.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Admin.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/ogin.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/userScreen.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/searchbook.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/newRegistration.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/utilities.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Book.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/view.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/borrowbook.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/updateMember.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/adminScreen.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/studentRegistration.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/student.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Member.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/manageMembers.java</file>
         </group>
     </open-files>
 </project-private>

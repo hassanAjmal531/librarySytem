@@ -24,8 +24,7 @@ public class Member extends person {
     public Member(int id, String fname, String lname, String email, String contact, String address, String password){
         super(id, fname, lname, email, contact,address, password);
     }
-    public void borrow(){
-    }
+    
     public void checkhistory(){}
     public void logout(){}
     public boolean login(int id, String password){
@@ -53,6 +52,16 @@ public class Member extends person {
           
           }
           return false;
+    }
+    private boolean verifyLogin(int id, String password){
+        
+        return false;
+    }
+    public boolean borrow(int id, String password, int isbn, String title, String date, String rdate){
+        
+        
+    
+        return false;
     }
     
 }
