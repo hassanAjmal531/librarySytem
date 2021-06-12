@@ -1,0 +1,72 @@
+select * from employee;
+insert into employee (id, fname, lname, contact, address) values (1,'hassan','ajmal','123','abc');
+insert into employee (id, fname, lname, contact, address) values (2,'a1','ajmal','123','abc');
+insert into employee (id, fname, lname, contact, address) values (3,'a2','ajmal','123','abc');
+insert into employee (id, fname, lname, contact, address) values (4,'a3','ajmal','123','abc');
+
+insert into emplogin (password, employee_id) values ('abc',1);
+insert into emplogin (password, employee_id) values ('abc',2);
+insert into emplogin (password, employee_id) values ('abc',3);
+insert into emplogin (password, employee_id) values ('abc',4);
+
+insert into roles (role, employee_id) values ('admin',1);
+insert into roles (role, employee_id) values ('librarian',2);
+insert into roles (role, employee_id) values ('admin',2);
+insert into roles (role, employee_id) values ('staff',3);
+
+select * from roles;
+
+
+select employee.id, employee.fname, emplogin.password from employee, emplogin,roles where employee.id = 1 and emplogin.employee_id = 1 and roles.employee_id =1 and roles.role = 'admin';
+
+select * from emplogin;
+select * from employee;
+select * from roles;
+
+insert into member (id, fname,lname, email, contact_address, address) values(1,'usama','ajmal', 'a@gmail','1234456','ajsjfd' );
+insert into member (id, fname,lname, email, contact_address, address) values(2,'u1','ajmal', 'a@gmail','6','ajjfd' );
+insert into member (id, fname,lname, email, contact_address, address) values(3,'u2','ajmal', 'a@gmail','126','sdjfd' );
+insert into member (id, fname,lname, email, contact_address, address) values(4,'u3','ajmal', 'a@gmail','16','sdjfd' );
+select * from member;
+select * from mlogin;
+insert into mlogin (password, member_id) values ('abc',1);
+insert into mlogin (password, member_id) values ('abc',2);
+insert into mlogin (password, member_id) values ('abc',3);
+insert into mlogin (password, member_id) values ('abc',4);
+select * from student;
+
+
+insert into student (id, rnum, degree, semester) values(1, 1,'bcs','1');
+insert into student (id, rnum, degree, semester) values(4, 2,'bcs','4');
+
+insert into faculty (id, fid_1, department) values (2, 1,'computer science');
+insert into faculty (id, fid_1, department) values (3, 2,'computer science');
+select * from faculty;
+
+select * from member, student where member.id = student.id;
+select * from member, faculty where member.id = faculty.id;
+
+select * from roles;
+
+update roles set role = 'staff' where employee_id = 2 and role = 'admin';
+
+select * from book;
+
+insert into book (isbn, title, language, quantity) VALUES(1,'harry potter v1', 'ennglish','1');
+insert into book (isbn, title, language, quantity) VALUES(2,'harry potter v2', 'ennglish','1');
+insert into book (isbn, title, language, quantity) VALUES(3,'harry potter v3', 'ennglish','1');
+insert into book (isbn, title, language, quantity) VALUES(4,'harry potter v4', 'ennglish','1');
+
+
+alter table book drop COLUMN returndate;
+
+select * from haspublisher;
+insert into haspublisher (book_isbn, publisher_name) values (1,'abc');
+
+insert into publisher (name) values ('abc');
+
+
+
+COMMIT;
+
+
