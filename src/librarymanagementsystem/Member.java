@@ -61,11 +61,12 @@ public class Member extends person {
     
     public boolean borrow(int id, String password, int isbn, String title){
         conn c = new conn();
+        int quantity = 0;
         if(this.login(id, password)){
             if(checkAvailabilty(c, isbn))
-                if(checkQuantity(c,isbn)){
-                    this.issueBook(c, id, password, isbn, title);
-                }    
+                quantity = checkQuantity(c,isbn);
+                this.issueBook(c, id, password, isbn,quantity, title);
+                   
         }
         
     
@@ -90,22 +91,21 @@ public class Member extends person {
         return false;
     }
     
-    private boolean checkQuantity(conn c, int isbn){
+    private int checkQuantity(conn c, int isbn){
         try{
             PreparedStatement stmt = c.c.prepareStatement("select quantity from book where isbn = ?");
             stmt.setInt(1, isbn);
             ResultSet rs= stmt.executeQuery();
             if(rs.next())
                 if(rs.getInt(1)>= 1)
+                    return rs.getInt(1)-1;
                     
-                    return true;
-                else
-                    return false;
+                
         }catch(Exception e){
             e.printStackTrace();
         }
         
-            return false;
+            return 0;
     }
     
     public ArrayList<String> getDates(){
@@ -125,7 +125,7 @@ public class Member extends person {
         return dates;
     }
     
-    public void issueBook(conn c,int id, String password, int isbn, String title){
+    public void issueBook(conn c,int id, String password, int isbn,int quantity, String title){
         ArrayList<String> arr = this.getDates();
         String issueDate = arr.get(0);
         String returnDate = arr.get(1);
@@ -137,6 +137,12 @@ public class Member extends person {
             stmt.setString(3,title );
             stmt.setString(4, issueDate);
             stmt.setString(5, returnDate);
+            stmt.executeUpdate();
+            
+            sql = "update book set quantity = ? where isbn =?";
+            stmt = c.c.prepareStatement(sql);
+            stmt.setInt(1, quantity);
+            stmt.setInt(2, isbn);
             stmt.executeUpdate();
             
             
