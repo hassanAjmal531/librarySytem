@@ -64,8 +64,10 @@ public class Member extends person {
         int quantity = 0;
         if(this.login(id, password)){
             if(checkAvailabilty(c, isbn))
+                if(checkfine(c, id)){
                 quantity = checkQuantity(c,isbn);
                 this.issueBook(c, id, password, isbn,quantity, title);
+                }
                    
         }
         
@@ -106,6 +108,27 @@ public class Member extends person {
         }
         
             return 0;
+    }
+    
+    public boolean checkfine(conn c, int id){
+        try{
+            PreparedStatement stmt = c.c.prepareStatement("select fine from member where id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next())
+                if(rs.getInt(1) == 0)
+                    return true;
+                else 
+                    System.out.println("you have fine");
+                
+                    
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return false;
     }
     
     public ArrayList<String> getDates(){
