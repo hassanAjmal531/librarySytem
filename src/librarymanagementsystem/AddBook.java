@@ -16,6 +16,9 @@ public class AddBook extends javax.swing.JFrame {
      */
     public AddBook() {
         initComponents();
+        this.jComboBox1.addItem("science");
+        this.jComboBox1.addItem("asdfg");
+        
     }
 
     /**
@@ -42,7 +45,9 @@ public class AddBook extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        category = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        addCategory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,26 +65,22 @@ public class AddBook extends javax.swing.JFrame {
 
         jLabel7.setText("Quantity");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
         jButton1.setText("ADD");
 
         jLabel8.setText("Category");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                categoryActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        addCategory.setText("Add Category");
+        addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCategoryActionPerformed(evt);
             }
         });
 
@@ -87,11 +88,11 @@ public class AddBook extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel1))
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,16 +105,22 @@ public class AddBook extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1)))
+                            .addComponent(jTextField6)
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2)
+                            .addComponent(category)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addCategory)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(jLabel1)
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,10 +153,14 @@ public class AddBook extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addCategory)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(47, 47, 47))
         );
@@ -157,10 +168,29 @@ public class AddBook extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_categoryActionPerformed
 
+    private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
+        // TODO add your handling code here:
+        String text = this.category.getText();
+        
+        boolean flag = true;
+        if(!this.category.getText().equals("")){
+            
+            text = text.concat(", ");
+            System.out.print(text);
+            this.category.setText(text.concat(this.jComboBox1.getSelectedItem().toString()));
+        }else{
+            this.category.setText(this.jComboBox1.getSelectedItem().toString());
+            System.out.print(this.jComboBox1.getSelectedItem().toString());
+        }
+            
+            
+    }//GEN-LAST:event_addCategoryActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -197,6 +227,8 @@ public class AddBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCategory;
+    private javax.swing.JTextField category;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

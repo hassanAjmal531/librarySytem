@@ -7,6 +7,8 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import static librarymanagementsystem.login.conn;
 
@@ -205,11 +207,7 @@ public class Admin extends person {
         return false;
     }
     
-    public boolean addBooks(){
-        
-    
-        return false;
-    }
+   
     
     public ResultSet viewfines(){
         try{
@@ -264,6 +262,77 @@ public class Admin extends person {
         
     
         return false;
+    }
+    
+    public boolean addBooks(String [] details){
+        
+        
+    
+        return false;
+    }
+    
+    private ArrayList<String>splitAuthors(String authorNames){
+        
+        return new ArrayList<>(Arrays.asList(authorNames.split(",")));
+           
+    }
+    
+    private ArrayList<String> splitCategories(String categories){
+        return new ArrayList<>(Arrays.asList(categories.split(",")));
+    }
+    
+    private void addbookCategory(ArrayList <String> cat, int isbn, String title){
+        int categoryId = 0;
+        PreparedStatement stmt;
+        conn c= new conn();
+        String sql = "";
+        for (String category: cat){
+            switch(category){
+                case "science":
+                    try{
+                    categoryId = 4;
+                    sql = "insert into hascategory (bookid, booktitle, cid) values (?,?, ?)";
+                    stmt = c.c.prepareStatement(sql);
+                    stmt.setInt(1, isbn);
+                    stmt.setString(2,title);
+                    stmt.setInt(3, categoryId);
+                    stmt.executeUpdate();
+                    
+                    
+                    
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+                case "arts":
+                    try{
+                    categoryId = 1;
+                    sql = "insert into hascategory (bookid, booktitle, cid) values (?,?, ?)";
+                    stmt = c.c.prepareStatement(sql);
+                    stmt.setInt(1, isbn);
+                    stmt.setString(2,title);
+                    stmt.setInt(3, categoryId);
+                    stmt.executeUpdate();
+                    
+                    
+                    
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    
+            
+            }
+        
+        }
+    
+    }
+    
+    private void addAuthors(){
+    
+        
+    
     }
     
 }

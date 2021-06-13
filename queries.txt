@@ -221,7 +221,7 @@ insert into hasauthor (book_isbn, title, author_id) values (3,'harry potter v3',
 insert into hasauthor (book_isbn, title, author_id) values (2,'harry potter v2',3);
 
 
-select  listagg(author.name, ', ') from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = 2) ;
+select  listagg(author.name, ', ') from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = 1) ;
 select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = 2);
 
 
@@ -263,9 +263,33 @@ select fine from member where id = 1;
 insert into borrowed(id,book_isbn, title, issuedate, returndate) values (1, 2,'harry potter v2','sdf','dfg' );
 
 select member.id , book.isbn, book.title from member, book, borrowed where member.id = borrowed.id and book.isbn  = borrowed.book_isbn;
+select * from author;
+create sequence incauthor minvalue 1 start with 6 cache 10;
+select incauthor.NEXTVAL from dual;
+drop sequence incauthor;
+
+select * from hasauthor;
+
+
+insert into author (id,name) values(incauthor.nextval,'hassan');
+
+alter table publisher drop column pid;
 
 
 COMMIT;
+
+select * from publisher;
+
+
+create sequence incPid minvalue 1 start with 6 cache 10;
+
+
+
+
+select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn and book.title = 'harry potter v1';
+
+
+select SEQ_XY.NEXTVAL from dual;
 
 
 
