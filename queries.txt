@@ -283,7 +283,7 @@ select * from publisher;
 
 create sequence incPid minvalue 1 start with 6 cache 10;
 
-
+select * from borrowed;
 
 
 select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn and book.title = 'harry potter v1';
@@ -293,5 +293,32 @@ select SEQ_XY.NEXTVAL from dual;
 select * from hascategory;
 rollback;
 
+select * from book where isbn = 7;
+select quantity from book where isbn = 7;
 
+select * from borrowed;
 
+delete from borrowed where id =1 and book_isbn = 2;
+
+select fine from member where id = 1;
+
+update member set fine = 0 where id =1;
+select * from book;
+
+select issuendate from borrowed where id = 1 and book_isbn = 4;
+
+insert into history(title, issuedate, returndate, member_id) values ('dfg','sdf','sdf',1);
+
+drop table history;
+
+create table history(
+    title varchar2(255) not null,
+    issuedate varchar2(255) not null,
+    returndate varchar2(255) not null,
+    member_id int not null
+
+);
+
+ALTER TABLE history ADD CONSTRAINT hitory_fk foreign KEY ( member_id) references member (id);
+
+commit;
