@@ -290,6 +290,8 @@ select book.isbn, book.title, book.language, book.quantity, publisher.name from 
 
 
 select SEQ_XY.NEXTVAL from dual;
+select * from hascategory;
+rollback;
 
 
 

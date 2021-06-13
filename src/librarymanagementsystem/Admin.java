@@ -7,10 +7,12 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import static librarymanagementsystem.login.conn;
+import static librarymanagementsystem.test.getSeqValue;
 
 /**
  *
@@ -259,14 +261,43 @@ public class Admin extends person {
             e.printStackTrace();
         }
         
-        
+      
     
         return false;
     }
     
     public boolean addBooks(String [] details){
         
+        PreparedStatement stmt;
+        String sql = "";
+        boolean flag = false;
+        try{
+            sql = "insert into book (isbn, title, language, quantity) VALUES(?,?,?,?)";
+            stmt = new conn().c.prepareStatement(sql);
+            stmt.setInt(1, Integer.valueOf(details[0]));
+            stmt.setString(2, details[1]);
+            stmt.setString(3, details[2]);
+            stmt.setInt(4, Integer.valueOf(details[5]));
+            stmt.executeUpdate();
+            
+            if(this.addAuthors(this.splitAuthors(details[3]), Integer.valueOf(details[0]), details[1]))
+                flag = true;
+            else
+                flag = false;
+            
+            if(this.addbookCategory(this.splitCategories(details[6]), Integer.valueOf(details[0]), details[1]))
+                flag = true;
+            else
+                flag = false;
+                
+            
+            
+            
+            return flag;
         
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     
         return false;
     }
@@ -281,7 +312,7 @@ public class Admin extends person {
         return new ArrayList<>(Arrays.asList(categories.split(",")));
     }
     
-    private void addbookCategory(ArrayList <String> cat, int isbn, String title){
+    private boolean addbookCategory(ArrayList <String> cat, int isbn, String title){
         int categoryId = 0;
         PreparedStatement stmt;
         conn c= new conn();
@@ -316,6 +347,7 @@ public class Admin extends person {
                     
                     
                     
+                    
                     }catch(Exception e){
                         e.printStackTrace();
                     }
@@ -326,12 +358,66 @@ public class Admin extends person {
             }
         
         }
+        return true;
     
     }
     
-    private void addAuthors(){
+    private boolean addAuthors(ArrayList<String> authors, int isbn, String title){
     
-        
+        conn c= new conn();
+        boolean flag = true;
+        boolean flag2 = true;
+        boolean flag3 =true;
+        int AId = 0;
+        String sql = "";
+        PreparedStatement stmt;
+        PreparedStatement stmt2;
+        int CId = 0;
+        for(String name: authors){
+            while(flag2){
+                try{
+                    Statement s = c.c.createStatement();
+                    ResultSet rs=s.executeQuery("select * from author");
+                    while (rs.next()){
+                        System.out.println(rs.getString(2));
+                        if(rs.getString(2).equals(name)){
+                            System.out.print(name);
+                            CId = rs.getInt(1);
+                            flag = false;
+                            break;
+
+                        }
+                    }
+                    if(flag){
+                        AId = getSeqValue(c);
+                        sql = String.format("insert into author (id,name) values(%d, '%s')",AId,name );
+
+                        stmt2 = c.c.prepareStatement(sql);
+
+                        stmt2.executeUpdate(sql);
+                        flag3 = true;
+
+                    }
+                    else if(!flag){
+                        sql = "insert into hasauthor (book_isbn, title, author_id) values (?,?,?)";
+                        stmt = c.c.prepareStatement(sql);
+                        stmt.setInt(1, isbn);
+                        stmt.setString(2, title);
+                        stmt.setInt(3, CId);
+                        stmt.executeUpdate();
+                        if(flag3){
+                            flag2 = false;
+                        }
+
+
+                    }
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return true;
     
     }
     

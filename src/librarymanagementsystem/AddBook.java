@@ -5,6 +5,8 @@
  */
 package librarymanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
@@ -66,6 +68,11 @@ public class AddBook extends javax.swing.JFrame {
         jLabel7.setText("Quantity");
 
         jButton1.setText("ADD");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Category");
 
@@ -189,6 +196,25 @@ public class AddBook extends javax.swing.JFrame {
             
             
     }//GEN-LAST:event_addCategoryActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String[] details = new String[7];
+        details[0] = this.jTextField1.getText().toString();
+        details[1] = this.jTextField2.getText().toString();
+        details[2] = this.jTextField3.getText().toString();
+        details[3] = this.jTextField4.getText().toString();
+        details[4] = this.jTextField5.getText().toString();
+        details[5] = this.jTextField6.getText().toString();
+        details[6] = this.category.getText().toString();
+        
+        
+         
+       boolean flag = new Admin().addBooks(details);
+       if(flag)
+           JOptionPane.showMessageDialog(rootPane, "Book ADDED");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
