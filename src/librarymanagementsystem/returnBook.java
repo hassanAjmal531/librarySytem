@@ -5,6 +5,8 @@
  */
 package librarymanagementsystem;
 
+import java.util.Date;
+
 /**
  *
  * @author Dell
@@ -53,6 +55,11 @@ public class returnBook extends javax.swing.JFrame {
         jLabel4.setText("Return Date:");
 
         jButton1.setText("Return");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Title");
 
@@ -123,6 +130,13 @@ public class returnBook extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Date date = this.jDateChooser2.getDate();
+        new Member().returnBook(Integer.valueOf(this.jTextField1.getText()), Integer.valueOf(this.jTextField2.getText()),this.jTextField3.getText(), utilities.DateToString(date));
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

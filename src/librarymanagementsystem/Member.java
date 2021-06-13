@@ -180,10 +180,16 @@ public class Member extends person {
     
     public void returnBook(int id, int isbn, String title,String rDate){
         int days = utilities.getdifference(this.getReturnDate(id, isbn), rDate);
-        int fine = this.calculateFine(days);
+        int fine = 0;
+        if(days == 0 || days < 0)
+            fine = 0;
+        else
+            fine = this.calculateFine(days);
         
         conn c = new conn();
         int quantity = this.getQuantity(c, isbn) +1;
+        String idate = this.getissueDate(id, isbn);
+        String returnDate = this.getReturnDate(id, isbn);
         
         try{
             
@@ -204,8 +210,8 @@ public class Member extends person {
             
             stmt = c.c.prepareStatement("insert into history(title, issuedate, returndate, member_id) values (?,?,?,?)");
             stmt.setString(1,title);
-            stmt.setString(2,this.getissueDate(id, isbn));
-            stmt.setString(3, this.getReturnDate(id, isbn));
+            stmt.setString(2,idate);
+            stmt.setString(3, returnDate);
             stmt.setInt(4, id);
             stmt.executeUpdate();
                     
