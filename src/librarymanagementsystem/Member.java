@@ -178,5 +178,121 @@ public class Member extends person {
         
     }
     
+    public void returnBook(int id, int isbn, String title,String rDate){
+        int days = utilities.getdifference(this.getReturnDate(id, isbn), rDate);
+        int fine = this.calculateFine(days);
+        
+        conn c = new conn();
+        int quantity = this.getQuantity(c, isbn) +1;
+        
+        try{
+            
+            PreparedStatement stmt = c.c.prepareStatement("delete from borrowed where id = ? and book_isbn = ?");
+            stmt.setInt(1, id);
+            stmt.setInt(2, isbn);
+            stmt.executeUpdate();
+            
+            stmt = c.c.prepareStatement("update book set quantity = ? where isbn =?");
+            stmt.setInt(1, quantity);
+            stmt.setInt(2, isbn);
+            stmt.executeUpdate();
+            
+            stmt = c.c.prepareStatement("update member set fine = ? where id =?");
+            stmt.setInt(1,fine);
+            stmt.setInt(2,id);
+            stmt.executeUpdate();
+            
+            stmt = c.c.prepareStatement("insert into history(title, issuedate, returndate, member_id) values (?,?,?,?)");
+            stmt.setString(1,title);
+            stmt.setString(2,this.getissueDate(id, isbn));
+            stmt.setString(3, this.getReturnDate(id, isbn));
+            stmt.setInt(4, id);
+            stmt.executeUpdate();
+                    
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        
+    }
+    
+    private String getReturnDate(int id, int isbn){
+        conn c= new conn();
+        try{
+            PreparedStatement stmt = c.c.prepareStatement("select returndate from borrowed where id = ? and book_isbn = ?");
+            stmt.setInt(1, id);
+            stmt.setInt(2, isbn);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                return rs.getString(1);
+        
+        }catch(Exception e){
+            
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    private String getissueDate(int id, int isbn){
+        conn c= new conn();
+        try{
+            PreparedStatement stmt = c.c.prepareStatement("select issuedate from borrowed where id = ? and book_isbn = ?");
+            stmt.setInt(1, id);
+            stmt.setInt(2, isbn);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                return rs.getString(1);
+        
+        }catch(Exception e){
+            
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    private int calculateFine(int days){
+        return 100 *days;
+        
+    }
+    
+    private int getQuantity(conn c, int isbn){
+        try{
+            PreparedStatement stmt = c.c.prepareStatement("select quantity from book where isbn = ?");
+            stmt.setInt(1, isbn);
+            ResultSet rs= stmt.executeQuery();
+            if(rs.next())
+                if(rs.getInt(1)>= 1)
+                    return rs.getInt(1)-1;
+                    
+                
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+            return 0;
+    }
+    
+    private int getFine(conn c,int id){
+        
+        try{
+            PreparedStatement stmt = c.c.prepareStatement("select fine from member where id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs= stmt.executeQuery();
+            if(rs.next())
+                
+                return rs.getInt(1);
+                    
+                
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return 0;
+    }
+    
+    
     
 }

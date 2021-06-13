@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -130,9 +131,40 @@ public class utilities {
     }
     
     public static String DateToString(Date date){
+        
+        return new SimpleDateFormat("dd/MM/yyyy").format(date);
+    }
+    
+    public static Date toDate(String string){
+        try{
+        return new SimpleDateFormat("dd/MM/yyyy").parse(string); 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
     
-    
+    public static int getdifference(String d1, String d2){
+        
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+	 String dateBeforeString = d1;
+	 String dateAfterString = d2;
+         Date dateBefore = null;
+
+	 try {
+	       dateBefore = myFormat.parse(dateBeforeString);
+	       Date dateAfter = myFormat.parse(dateAfterString);
+	       long difference = dateAfter.getTime() - dateBefore.getTime();
+	       float daysBetween = (difference / (1000*60*60*24));
+               int day = (int) daysBetween;
+               
+                
+	      return day;
+	} catch (Exception e) {
+	       e.printStackTrace();
+	 }
+        
+        return 0;
+    }
     
 }
