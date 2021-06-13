@@ -8,8 +8,12 @@ package librarymanagementsystem;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.DateFormat;
 
 /**
  *
@@ -17,7 +21,7 @@ import java.util.Arrays;
  */
 public class test {
     public static void main(String arg[]){
-        insertAuthor("usama",4,"harry potter v4");
+        dateTest();
     }
     
     public static boolean insertAuthor(String name, int isbn,String title){
@@ -87,6 +91,35 @@ public class test {
         }
         
         return 0;
+    }
+    
+    public static void dateTest(){
+       /* SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+	 String dateBeforeString = "29 01 2014";
+	 String dateAfterString = "02 02 2014";
+         Date dateBefore = null;
+
+	 try {
+	       dateBefore = myFormat.parse(dateBeforeString);
+	       Date dateAfter = myFormat.parse(dateAfterString);
+	       long difference = dateAfter.getTime() - dateBefore.getTime();
+	       float daysBetween = (difference / (1000*60*60*24));
+               int day = (int) daysBetween;
+               /* You can also convert the milliseconds to days using this method
+                * float daysBetween = 
+                *         TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS)
+                */
+	    /*   System.out.println("Number of Days between dates: "+day);
+	} catch (Exception e) {
+	       e.printStackTrace();
+	 }*/
+         
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date()); // Using today's date
+        c.add(Calendar.DATE, 5); // Adding 5 days
+        String output = sdf.format(c.getTime());
+        System.out.println(output);
     }
     
     

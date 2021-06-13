@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 
 /**
  *
@@ -127,5 +128,11 @@ public class utilities {
             System.out.println(i);
     
     }
+    
+    public static String DateToString(Date date){
+        return null;
+    }
+    
+    
     
 }
