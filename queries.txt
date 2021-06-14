@@ -313,17 +313,12 @@ alter table drop constraint ;
 update book set title = 'how to keep your aquarium healthy', language = 'chinese', quantity = 1 where isbn = 4;
 
 select * from hasauthor;
-select * from author;
-select * from hascategory;
-select * from category;
 
 select issuendate from borrowed where id = 1 and book_isbn = 4;
 
 insert into history(title, issuedate, returndate, member_id) values ('dfg','sdf','sdf',1);
 
 drop table history;
-
-rollback;
 
 create table history(
     title varchar2(255) not null,
@@ -346,4 +341,27 @@ alter table book add constraint book_pk primary key(isbn);
 alter table hascategory add constraint hascategory_fk foreign key (bookid) references book (isbn);
 alter table hasauthor add constraint hasauthor_fk foreign key (book_isbn) references book (isbn);
 alter table borrowed add constraint borrowed_fk foreign key (book_isbn) references book (isbn);
+
+select * from history;
+select title, issuedate, returndate from history where member_id = 1;
+
+insert into history values('fgafg','sdfgh','dfgh',1);
+
+insert into borrowed values(2,2,'xcvb','sdfg','sdfg');
+
+select * from borrowed;
+select book_isbn, title, issuedate, returndate from borrowed where id = 1;
+)
+delete from borrowed where id = 2;
+
+select id, fine from member where id =1;
+
+select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn;
+select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = 1);
+
+select * from member;
+
+select * from student;
+select * from mlogin;
+select * from faculty;
 commit;
