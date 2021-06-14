@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -299,6 +300,56 @@ public class Member extends person {
         return 0;
     }
     
+    public ResultSet displayHistory(int id){
+        try{
+            String sql = String.format("select title, issuedate, returndate from history where member_id = %d",id) ;
+            Statement s = new conn().c.createStatement();
+            
+            
+            ResultSet rs = s.executeQuery(sql) ;
+            
+            return rs;
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+    
+    public ResultSet currentlyBorrowed(int id){
+        
+        try{
+            String sql = String.format("select book_isbn, title, issuedate, returndate from borrowed where id = %d",id) ;
+            Statement s = new conn().c.createStatement();
+            
+            
+            ResultSet rs = s.executeQuery(sql) ;
+            
+            return rs;
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    public ResultSet displayFine(int id){
+        try{
+            String sql = String.format("select id, fine from member where id =1",id) ;
+            Statement s = new conn().c.createStatement();
+            
+            
+            ResultSet rs = s.executeQuery(sql) ;
+            
+            return rs;
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     
     
 }
