@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import static librarymanagementsystem.login.conn;
+import static librarymanagementsystem.test.checkMemberType;
 
 /**
  *
@@ -350,6 +351,83 @@ public class Member extends person {
         }
         return null;
     }
+    
+    public boolean deleteAccount(int id){
+         conn c = new conn();
+        int type = 0;
+        boolean flag = false;
+        PreparedStatement stmt;
+        try{
+            String sql = "";
+            stmt = c.c.prepareStatement("delete from mlogin where member_id = ?");
+            stmt.setInt(1, id);
+            stmt.execute();
+            type = checkMemberType(id);
+            if(type == 1){
+                sql = "delete from student where id = ?";
+                flag = true;
+            }
+            else if(type == 2){
+                sql = "delete from faculty where id = ?";
+                flag = true;
+            }
+            else if(type == 3){
+                System.out.println("type data not found");
+                flag = false;
+            }
+            
+            if(flag){
+                stmt = c.c.prepareStatement(sql);
+                stmt.setInt(1, id);
+                stmt.execute();
+            }
+            
+            stmt = c.c.prepareStatement("delete from member where id = ?");
+            stmt.setInt(1, id);
+            stmt.execute();
+            
+            
+            
+        
+        }catch(Exception e){
+            
+            e.printStackTrace();
+            System.out.println("cannot delete the account member must first return all the borrowed books");
+        }
+        return false;
+    }
+    
+    private int checkMemberType(int id){
+        
+        try{
+            PreparedStatement stmt = new conn().c.prepareStatement("select * from student where id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next())
+                return 1;
+            stmt = new conn().c.prepareStatement("select * from faculty where id = ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            
+            if(rs.next())
+                return 2;
+            else return 3;
+            
+            
+            
+            
+            
+            
+        
+        }catch(Exception e){
+            
+            e.printStackTrace();
+            return 3;
+        }
+        
+       
+    }
+    
     
     
 }
