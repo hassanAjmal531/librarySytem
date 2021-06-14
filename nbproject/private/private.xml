@@ -6,9 +6,12 @@
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/updatestudent.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/AddBook.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/ViewAndResolveFine.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/test.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/managebooks.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/login.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/conn.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Admin.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/returnBook.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/ogin.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/userScreen.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/searchbook.java</file>
@@ -22,6 +25,7 @@
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/studentRegistration.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/student.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/Member.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/history.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/LibraryManagementSystem/src/librarymanagementsystem/manageMembers.java</file>
         </group>
     </open-files>

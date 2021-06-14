@@ -289,6 +289,12 @@ public class Admin extends person {
                 flag = true;
             else
                 flag = false;
+            sql = "insert into publisher values(?,?)";
+            stmt = new conn().c.prepareStatement(sql);
+            stmt.setInt(1, Integer.valueOf(details[0]));
+            stmt.setString(2,details[4]);
+            stmt.executeUpdate();
+            
                 
             
             
@@ -368,12 +374,14 @@ public class Admin extends person {
         boolean flag = true;
         boolean flag2 = true;
         boolean flag3 =true;
+        boolean flag4 = false;
         int AId = 0;
         String sql = "";
         PreparedStatement stmt;
         PreparedStatement stmt2;
         int CId = 0;
         for(String name: authors){
+            flag2 = true;
             while(flag2){
                 try{
                     Statement s = c.c.createStatement();
@@ -407,6 +415,7 @@ public class Admin extends person {
                         stmt.executeUpdate();
                         if(flag3){
                             flag2 = false;
+                            
                         }
 
 
@@ -419,6 +428,81 @@ public class Admin extends person {
         }
         return true;
     
+    }
+    
+    public boolean updateBook(String[] details){
+        
+        PreparedStatement stmt;
+        String sql = "update book set title = ?, language = ?, quantity = ? where isbn = ?";
+        boolean flag = false;
+        try{
+            
+            stmt = new conn().c.prepareStatement(sql);
+            stmt.setString(1, details[1]);
+            stmt.setString(2, details[2]);
+            stmt.setInt(3, Integer.valueOf(details[3]));
+            stmt.setInt(4, Integer.valueOf(details[0]));
+            stmt.executeUpdate();
+            
+            sql = "update publisher set name = ? where book_isbn = ?";
+            stmt = new conn().c.prepareStatement(sql);
+            stmt.setInt(2, Integer.valueOf(details[0]));
+            stmt.setString(1,details[4]);
+            stmt.executeUpdate();
+            
+            
+            
+            if(this.updateAuthors(Integer.valueOf(details[0]), details))
+                flag = true;
+            else
+                flag = false;
+            
+            if(this.updateCategories(Integer.valueOf(details[0]), details))
+                flag = true;
+            else
+                flag = false;
+                
+            
+            
+            
+            return flag;
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    private boolean updateAuthors(int isbn, String [] details){
+        
+        try{
+            PreparedStatement stmt = new conn().c.prepareStatement("delete from hasauthor where book_isbn = ?");
+            stmt.setInt(1, isbn);
+            stmt.executeUpdate();
+            if(this.addAuthors(this.splitAuthors(details[6]), Integer.valueOf(details[0]), details[1]))
+                 return true;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return false;
+    
+    }
+    
+    public boolean updateCategories(int isbn, String[] details){
+        
+        try{
+            PreparedStatement stmt = new conn().c.prepareStatement("delete from hascategory where bookid = ?");
+            stmt.setInt(1, isbn);
+            stmt.executeUpdate();
+              if(this.addbookCategory(this.splitCategories(details[5]), Integer.valueOf(details[0]), details[1]))
+                 return true;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
     
 }

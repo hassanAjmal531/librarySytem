@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.ResultSet;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +20,7 @@ public class searchbook extends javax.swing.JFrame {
      */
     public searchbook() {
         initComponents();
-        String arr[] = {"isbn","name"};
-        this.jComboBox1 = new JComboBox(arr);
+        
     }
 
     /**
@@ -38,6 +38,7 @@ public class searchbook extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         enter = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         search = new javax.swing.JButton();
 
@@ -58,13 +59,10 @@ public class searchbook extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ISBN", "Title", "language", "quantity", "author", "publisher", "category"
+                "ISBN", "Title", "language", "quantity", "publisher", "category", "author"
             }
         ) {
             Class[] types = new Class [] {
@@ -75,7 +73,9 @@ public class searchbook extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTable1);
+
+        jScrollPane1.setViewportView(jScrollPane2);
 
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
@@ -140,9 +140,29 @@ public class searchbook extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        int isbn = Integer.valueOf(enter.getText());
+        int isbn;
+        String name;
         
-        utilities.searchByISBN(isbn);
+        if(this.jComboBox1.getSelectedItem().toString().equals("name"))
+        isbn = Integer.valueOf(enter.getText());
+        
+        //String arr [] =utilities.searchByISBN(isbn);
+        String arr[] = utilities.searchByName("harry potter v1");
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.addRow(new Object[]{
+                    Integer.valueOf(arr[0]),
+                    arr[1],
+                    arr[2],
+                    Integer.valueOf(arr[3]),
+                    arr[4],
+                    arr[6],
+                    arr[5]
+                
+                
+                
+                
+                });
             
     }//GEN-LAST:event_searchActionPerformed
 
@@ -189,6 +209,7 @@ public class searchbook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables

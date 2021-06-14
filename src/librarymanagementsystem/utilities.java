@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -62,12 +63,12 @@ public class utilities {
     public static String[] searchByName(String title){
     
         String values[] = new String [7];
-        int isbn = 0;
+        int isbn = getisbn(title);
         try{
             conn c  = new conn();
-            String sql = "select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn and book.title = ?";
+            String sql = "select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn and book.isbn = ?";
             PreparedStatement s = c.c.prepareStatement(sql);
-            s.setString(1, title);
+            s.setInt(1, isbn);
             ResultSet rs =s.executeQuery();
             
             
@@ -103,6 +104,23 @@ public class utilities {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public static int getisbn(String title){
+        try{
+            PreparedStatement s= new conn().c.prepareStatement("select isbn, title from book");
+            ResultSet rs = s.executeQuery();
+            
+            while(rs.next()){
+                if(rs.getString(2).equals(title))
+                    return rs.getInt(1);
+            }
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    
     }
     
     public static ResultSet viewAllBook(){

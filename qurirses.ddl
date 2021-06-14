@@ -142,12 +142,15 @@ create table hasbooks(
 );
 
 ALTER TABLE hasbooks ADD CONSTRAINT hasbooks_fk foreign KEY ( author_idd) references author (id);
-
+select * from hasbooks;
 insert into hasbooks (book_isbnn, author_idd) values (1,1);
-insert into hasbooks (book_isbnn, author_idd) values (1,2);
-insert into hasbooks (book_isbnn, author_idd) values (2,1);
+insert into hasbooks (book_isbnn, author_idd) values (2,2);
+insert into hasbooks (book_isbnn, author_idd) values (2,3);
 insert into hasbooks (book_isbnn, author_idd) values (3,4);
-
+insert into hasauthor (book_isbn, title, author_id) values (1,'harry potter v1',1);
+insert into hasauthor (book_isbn, title, author_id) values (2,'harry potter v2',2);
+insert into hasauthor (book_isbn, title, author_id) values (3,'harry potter v3',4);
+insert into hasauthor (book_isbn, title, author_id) values (2,'harry potter v2',3);
 select * from book where book.isbn in (select hasbooks.book_isbnn from hasbooks where hasbooks.author_idd = 1);
 
 drop table has_author;
@@ -196,6 +199,8 @@ insert into category(id, cname) values (4,'science');
 select * from category;
 select * from hascategory;
 
+delete from hascategory where bookid =1;
+
 select * from book;
 
 insert into hascategory (bookid, booktitle, cid) values (1,'harry potter v1', 1);
@@ -218,7 +223,7 @@ insert into hasauthor (book_isbn, title, author_id) values (3,'harry potter v3',
 insert into hasauthor (book_isbn, title, author_id) values (2,'harry potter v2',3);
 
 
-select  listagg(author.name, ', ') from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = 2) ;
+select  listagg(author.name, ', ') from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = 1) ;
 select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = 2);
 
 
@@ -231,8 +236,109 @@ select book.isbn, book.title, book.language, book.quantity, publisher.name from 
 
 select * from publisher;
 
+create sequence AId minvalue 1 start with 5 cache 10;
+create sequence aid2 minvalue 1 start with 5 cache 10;
+drop sequence aid;
+
+select member.id, member.fname, member.lname, member.fine from member;
+select member.id, member.fname, member.lname, member.fine from member where id = 1;
+
+update member set fine = 100 where id = 1;
+
+
+create table borrowed(
+    id int not null,
+    book_isbn int not null,
+    title varchar2(255) not null,
+    issuedate varchar2(255) not null,
+    returnDate varchar2(255) not null
+    
+    
+);
+select * from book;
+drop table borrowed;
+
+ALTER TABLE borrowed ADD CONSTRAINT borrowed_fk1 foreign KEY (id) references member (id);
+alter table borrowed add constraint borrowed_fk foreign key (book_isbn, title) references book (isbn, title);
+select fine from member where id = 1;
+
+insert into borrowed(id,book_isbn, title, issuedate, returndate) values (1, 2,'harry potter v2','sdf','dfg' );
+
+select member.id , book.isbn, book.title from member, book, borrowed where member.id = borrowed.id and book.isbn  = borrowed.book_isbn;
+select * from author;
+create sequence incauthor minvalue 1 start with 6 cache 10;
+select incauthor.NEXTVAL from dual;
+drop sequence incauthor;
+
+select * from hasauthor;
+
+
+insert into author (id,name) values(incauthor.nextval,'hassan');
+
+alter table publisher drop column pid;
 
 
 COMMIT;
 
+select * from publisher;
 
+
+create sequence incPid minvalue 1 start with 6 cache 10;
+
+select * from borrowed;
+
+
+select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn and book.title = 'harry potter v1';
+
+
+select SEQ_XY.NEXTVAL from dual;
+select * from hascategory;
+rollback;
+
+select * from book where isbn = 7;
+select quantity from book where isbn = 7;
+
+select * from borrowed;
+
+delete from borrowed where id =1 and book_isbn = 2;
+
+select fine from member where id = 1;
+
+update member set fine = 0 where id =1;
+select * from book;
+insert into publisher values(2,'dfg');
+
+alter table drop constraint ;
+
+update book set title = 'how to keep your aquarium healthy', language = 'chinese', quantity = 1 where isbn = 4;
+
+select * from hasauthor;
+
+select issuendate from borrowed where id = 1 and book_isbn = 4;
+
+insert into history(title, issuedate, returndate, member_id) values ('dfg','sdf','sdf',1);
+
+drop table history;
+
+create table history(
+    title varchar2(255) not null,
+    issuedate varchar2(255) not null,
+    returndate varchar2(255) not null,
+    member_id int not null
+
+);
+
+ALTER TABLE history ADD CONSTRAINT history_fk foreign KEY ( member_id) references member (id);
+
+Alter table hasauthor drop constraint hasauthor_fk;
+alter table hascategory drop constraint hascategroy_fk;
+alter table borrowed drop constraint borrowed_fk;
+
+alter table book drop constraint book_pk;
+select * from book;
+
+alter table book add constraint book_pk primary key(isbn);
+alter table hascategory add constraint hascategory_fk foreign key (bookid) references book (isbn);
+alter table hasauthor add constraint hasauthor_fk foreign key (book_isbn) references book (isbn);
+alter table borrowed add constraint borrowed_fk foreign key (book_isbn) references book (isbn);
+commit;

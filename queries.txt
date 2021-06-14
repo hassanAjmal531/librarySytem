@@ -199,6 +199,8 @@ insert into category(id, cname) values (4,'science');
 select * from category;
 select * from hascategory;
 
+delete from hascategory where bookid =1;
+
 select * from book;
 
 insert into hascategory (bookid, booktitle, cid) values (1,'harry potter v1', 1);
@@ -304,12 +306,24 @@ select fine from member where id = 1;
 
 update member set fine = 0 where id =1;
 select * from book;
+insert into publisher values(2,'dfg');
+
+alter table drop constraint ;
+
+update book set title = 'how to keep your aquarium healthy', language = 'chinese', quantity = 1 where isbn = 4;
+
+select * from hasauthor;
+select * from author;
+select * from hascategory;
+select * from category;
 
 select issuendate from borrowed where id = 1 and book_isbn = 4;
 
 insert into history(title, issuedate, returndate, member_id) values ('dfg','sdf','sdf',1);
 
 drop table history;
+
+rollback;
 
 create table history(
     title varchar2(255) not null,
@@ -319,6 +333,17 @@ create table history(
 
 );
 
-ALTER TABLE history ADD CONSTRAINT hitory_fk foreign KEY ( member_id) references member (id);
+ALTER TABLE history ADD CONSTRAINT history_fk foreign KEY ( member_id) references member (id);
 
+Alter table hasauthor drop constraint hasauthor_fk;
+alter table hascategory drop constraint hascategroy_fk;
+alter table borrowed drop constraint borrowed_fk;
+
+alter table book drop constraint book_pk;
+select * from book;
+
+alter table book add constraint book_pk primary key(isbn);
+alter table hascategory add constraint hascategory_fk foreign key (bookid) references book (isbn);
+alter table hasauthor add constraint hasauthor_fk foreign key (book_isbn) references book (isbn);
+alter table borrowed add constraint borrowed_fk foreign key (book_isbn) references book (isbn);
 commit;
