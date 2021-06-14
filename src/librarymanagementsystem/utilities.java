@@ -127,9 +127,8 @@ public class utilities {
     
     public static void main(String args[]){
     
-        String [] arr =searchByName("harry potter v3");
-        for (String i : arr)
-            System.out.println(i);
+        
+        
     
     }
     
@@ -184,4 +183,50 @@ public class utilities {
         return null;
     }
     
-}
+  /*  public static String[] viewAllbooks(){
+    
+         String values[] = new String [7];
+        try{
+            conn c  = new conn();
+            String sql = "select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn";
+            PreparedStatement s = c.c.prepareStatement(sql);
+            
+            ResultSet rs =s.executeQuery();
+            
+            
+            while(rs.next()){
+                
+                for(int i = 0; i < 5; i++){
+                    values[i] = rs.getString(i+1);
+                }
+                sql = "select  listagg(author.name, ', ') as authors from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = ?)";
+                s = c.c.prepareStatement(sql);
+                s.setInt(1,Integer.valueOf(values[0]));
+                ResultSet rs1 = s.executeQuery();
+                
+                if(rs1.next())
+                    values[5] = rs.getString(1);
+                
+                sql = "select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = ?)";
+                s = c.c.prepareStatement(sql);
+                s.setInt(1,Integer.valueOf(values[0]));
+                ResultSet rs2 = s.executeQuery();
+                
+                if(rs2.next())
+                    values[6] = rs.getString(1);
+                
+                for(String i : values)
+                    System.out.println(i);
+                System.out.println();
+                
+            }
+            
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }*/
+        
+    }
+    
+

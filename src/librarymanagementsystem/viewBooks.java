@@ -32,6 +32,7 @@ public class viewBooks extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         view = new javax.swing.JButton();
@@ -40,13 +41,10 @@ public class viewBooks extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ISBN", "Title", "language", "quantity", "author", "publisher", "category"
+                "ISBN", "Title", "language", "quantity", "publisher", "category", "author"
             }
         ) {
             Class[] types = new Class [] {
@@ -57,7 +55,9 @@ public class viewBooks extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTable1);
+
+        jScrollPane1.setViewportView(jScrollPane2);
 
         jLabel1.setText("view books");
 
@@ -78,22 +78,20 @@ public class viewBooks extends javax.swing.JFrame {
                         .addGap(169, 169, 169)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))))
-                .addGap(61, 61, 61))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                            .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(11, 11, 11)
+                .addGap(5, 5, 5)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(view))
         );
 
@@ -102,55 +100,67 @@ public class viewBooks extends javax.swing.JFrame {
 
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         // TODO add your handling code here:
-        
-        int isbn = 0;
-        String authorNames = "";
-        String categories = "";
-        String sql;
-        conn c = new conn();
-        PreparedStatement s;
-        
+      
+         String values[] = new String [7];
         try{
-            ResultSet rs = utilities.viewAllBook();
+            conn c  = new conn();
+            String sql = "select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn";
+            PreparedStatement s = c.c.prepareStatement(sql);
+            
+            ResultSet rs =s.executeQuery();
+            
+            
             while(rs.next()){
                 
-                isbn = Integer.valueOf(rs.getInt(1));
+                for(int i = 0; i < 5; i++){
+                    values[i] = rs.getString(i+1);
+                }
                 sql = "select  listagg(author.name, ', ') as authors from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = ?)";
                 s = c.c.prepareStatement(sql);
-                s.setInt(1,isbn);
-                ResultSet rs1= s.executeQuery();
+                s.setInt(1,Integer.valueOf(values[0]));
+                ResultSet rs1 = s.executeQuery();
                 
                 if(rs1.next())
-                   authorNames  = rs1.getString(1);
+                    values[5] = rs1.getString(1);
                 
                 sql = "select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = ?)";
                 s = c.c.prepareStatement(sql);
-                s.setInt(1,isbn);
-                rs1 = s.executeQuery();
+                s.setInt(1,Integer.valueOf(values[0]));
+                ResultSet rs2 = s.executeQuery();
                 
-                if(rs1.next())
-                    categories = rs1.getString(1);
+                if(rs2.next())
+                    values[6] = rs2.getString(1);
                 
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.addRow(new Object[]{
-                rs.getInt(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getString(4),
-                authorNames,
-                rs.getString(5),
-                categories,
+                    Integer.valueOf(values[0]),
+                    values[1],
+                    values[2],
+                    Integer.valueOf(values[3]),
+                    values[4],
+                    values[6],
+                    values[5]
+                
+                
                 
                 
                 });
+            
+                
+                for(String i : values)
+                    System.out.println(i);
+                System.out.println();
                 
             }
-                
+            
+            
             
         }catch(Exception e){
             e.printStackTrace();
         }
+                
             
+         
     }//GEN-LAST:event_viewActionPerformed
 
     /**
@@ -192,6 +202,7 @@ public class viewBooks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton view;
     // End of variables declaration//GEN-END:variables
