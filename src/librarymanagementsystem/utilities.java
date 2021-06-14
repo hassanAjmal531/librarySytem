@@ -123,22 +123,7 @@ public class utilities {
     
     }
     
-    public static ResultSet viewAllBook(){
-        String author;
-        String category;
-        try{
-            conn c  = new conn();
-            String sql = "select book.isbn, book.title,book. language, book.quantity, publisher.name as publisherName from book, publisher where book.isbn = publisher.book_isbn";
-            PreparedStatement s = c.c.prepareStatement(sql);
-            
-            ResultSet rs =s.executeQuery();
-            return rs;
-           
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+    
     
     public static void main(String args[]){
     
@@ -183,6 +168,20 @@ public class utilities {
 	 }
         
         return 0;
+    }
+    
+    public static ResultSet displayBook(){
+        
+        try{
+            PreparedStatement stmt = new conn().c.prepareStatement("select * from book");
+            return stmt.executeQuery();
+            
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return null;
     }
     
 }

@@ -505,6 +505,46 @@ public class Admin extends person {
         return false;
     }
     
+    public boolean deleteBook(int isbn){
+        conn c = new conn();
+        if(checkIfBorrowed(isbn))
+            JOptionPane.showMessageDialog(null, "cannot delete ...... book is borrowed");
+        else{
+            try{
+                PreparedStatement stmt = c.c.prepareStatement("delete from hasauthor where book_isbn = ?");
+                stmt.setInt(1, isbn);
+                stmt.execute();
+                
+                stmt = c.c.prepareStatement("delete from hascategory where bookid = ?");
+                stmt.setInt(1, isbn);
+                stmt.execute();
+                
+                stmt = c.c.prepareStatement("delete from book where isbn = ?");
+                stmt.setInt(1, isbn);
+                stmt.execute();
+                
+                return true;
+                
+            }catch(Exception e){
+                
+            }
+        }
+            return false;
+    }
+    
+    private boolean checkIfBorrowed(int isbn){
+        try{
+            PreparedStatement s = new conn().c.prepareStatement("select borrowed.book_isbn from borrowed, book where book.isbn = borrowed.book_isbn and book.isbn = ?");
+            s.setInt(1, isbn);
+            if(s.executeQuery().next())
+                return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+    
 }
     
     
