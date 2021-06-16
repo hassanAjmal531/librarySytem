@@ -5,6 +5,8 @@
  */
 package librarymanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
@@ -14,8 +16,11 @@ public class FacultyRegistration extends javax.swing.JFrame {
     /**
      * Creates new form FacultyRegistration
      */
+    
+    private int check;
     public FacultyRegistration() {
         initComponents();
+        this.check =-2;
     }
 
     /**
@@ -35,8 +40,8 @@ public class FacultyRegistration extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         register = new javax.swing.JButton();
         ID = new javax.swing.JTextField();
-        Fname = new javax.swing.JTextField();
-        Lname = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
+        lname = new javax.swing.JTextField();
         fid = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,6 +51,8 @@ public class FacultyRegistration extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
+        quit = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,12 +69,17 @@ public class FacultyRegistration extends javax.swing.JFrame {
         jLabel9.setText("Departement ");
 
         register.setText("Register");
+        register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerActionPerformed(evt);
+            }
+        });
 
         ID.setText("jTextField1");
 
-        Fname.setText("jTextField2");
+        fname.setText("jTextField2");
 
-        Lname.setText("jTextField3");
+        lname.setText("jTextField3");
 
         fid.setText("jTextField4");
 
@@ -86,6 +98,20 @@ public class FacultyRegistration extends javax.swing.JFrame {
         address.setText("jTextField6");
 
         Password.setText("jPasswordField1");
+
+        quit.setText("Quit");
+        quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitActionPerformed(evt);
+            }
+        });
+
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,8 +134,8 @@ public class FacultyRegistration extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(Fname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,16 +145,19 @@ public class FacultyRegistration extends javax.swing.JFrame {
                         .addComponent(register)
                         .addGap(37, 37, 37)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -136,14 +165,15 @@ public class FacultyRegistration extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(Fname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addComponent(quit)
+                        .addGap(2, 2, 2)
                         .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -165,12 +195,49 @@ public class FacultyRegistration extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(departement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(register)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register)
+                    .addComponent(back))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_quitActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+         if(this.check == JOptionPane.OK_OPTION)
+            new newRegistration().setVisible(true);
+        else{
+            int check = JOptionPane.showConfirmDialog(rootPane, "do you want to cancel the registration?");
+            if(check == JOptionPane.OK_OPTION)
+                new newRegistration().setVisible(true);
+         }
+    }//GEN-LAST:event_backActionPerformed
+
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+        // TODO add your handling code here:
+        int id =Integer.valueOf(ID.getText());
+        String fn = fname.getText();
+        String ln = lname.getText();
+        String semail = email.getText();
+        String contac = contact.getText();
+        String password = Password.getText();
+        String Address = address.getText();
+        int fid = Integer.valueOf(this.fid.getText());
+        String department = this.departement.getText();
+        
+        if(new Admin().RegisterFaculty(new faculty(fid, id, department, fn, ln,  semail, contac, Address, password))){
+            this.check = JOptionPane.OK_OPTION;
+            JOptionPane.showMessageDialog(null, "student successfully registered");
+            new newRegistration().setVisible(true);
+        }
+    }//GEN-LAST:event_registerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,15 +275,15 @@ public class FacultyRegistration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Fname;
     private javax.swing.JTextField ID;
-    private javax.swing.JTextField Lname;
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField address;
+    private javax.swing.JButton back;
     private javax.swing.JTextField contact;
     private javax.swing.JTextField departement;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fid;
+    private javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -226,6 +293,8 @@ public class FacultyRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField lname;
+    private javax.swing.JButton quit;
     private javax.swing.JButton register;
     // End of variables declaration//GEN-END:variables
 }

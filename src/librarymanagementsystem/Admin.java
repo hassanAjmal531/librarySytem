@@ -623,6 +623,21 @@ public class Admin extends person {
        
     }
     
+    public ResultSet viewAllMembers(){
+        try{
+            conn c = new conn();
+            PreparedStatement s = c.c.prepareStatement("select id, fname, lname, email, contact_address, address from member");
+            
+            return s.executeQuery();
+        }catch(Exception e){            
+
+            
+            
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
 }
     
     

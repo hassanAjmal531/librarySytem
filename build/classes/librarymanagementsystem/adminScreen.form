@@ -35,20 +35,25 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="131" max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="169" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton5" max="32767" attributes="0"/>
+                  <Component id="registration" max="32767" attributes="0"/>
                   <Component id="jButton6" max="32767" attributes="0"/>
                   <Component id="jButton9" max="32767" attributes="0"/>
                   <Component id="jButton10" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="169" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="back" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="quit" min="-2" pref="77" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,16 +61,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="quit" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="registration" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButton6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButton10" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="136" max="32767" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <Component id="back" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,10 +89,13 @@
         <Property name="text" type="java.lang.String" value="Admin Portal"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="registration">
       <Properties>
         <Property name="text" type="java.lang.String" value="Register Member"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrationActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
@@ -98,6 +111,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Fines"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="quit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Quit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quitActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="back">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
