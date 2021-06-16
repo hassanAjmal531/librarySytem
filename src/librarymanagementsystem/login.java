@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.ResultSet;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -174,9 +175,13 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-            Member member = new Member();
+        try{    
+        Member member = new Member();
             if(member.login(Integer.valueOf(ID.getText()), Password.getText()))
                 new userScreen().setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "invalid username or password");
+        }
             
             
             

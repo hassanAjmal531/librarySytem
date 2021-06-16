@@ -62,7 +62,7 @@ public class Admin extends person {
         PreparedStatement stmt;
          
         try{
-            String sql = "insert into member (id, fname,lname, email, contact_address, address) values(?,?,?,?,?,? )";
+            String sql = "insert into member (id, fname,lname, email, contact_address, address,fine) values(?,?,?,?,?,?,0)";
             stmt = conn.c.prepareStatement(sql);
             stmt.setInt(1, s.id);
             stmt.setString(2,s.fname);
@@ -94,6 +94,7 @@ public class Admin extends person {
             
         }catch(Exception e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "invalid information");
         }
         
         return false;
@@ -102,7 +103,7 @@ public class Admin extends person {
     public boolean RegisterFaculty(faculty f){
         PreparedStatement stmt;
         try{
-            String sql = "insert into member (id, fname,lname, email, contact_address, address) values(?,?,?,?,?,? )";
+            String sql = "insert into member (id, fname,lname, email, contact_address, address,fine) values(?,?,?,?,?,?,0 )";
             stmt = conn.c.prepareStatement(sql);
             stmt.setInt(1,f.id);
             stmt.setString(2,f.fname);
@@ -125,9 +126,11 @@ public class Admin extends person {
             stmt.setInt(2, f.fid);
             stmt.setString(3, f.departement);
             stmt.execute();
+            return true;
         
         }catch(Exception e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "invalid id");
         
         }
         

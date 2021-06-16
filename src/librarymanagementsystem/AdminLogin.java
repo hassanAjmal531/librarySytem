@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import static librarymanagementsystem.login.conn;
 
 /**
@@ -137,9 +138,13 @@ public class AdminLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        Admin admin = new Admin();    
+        Admin admin = new Admin();
+        try{
         if(admin.login(Integer.valueOf(ID.getText()), Uname.getText(), Password.getText()))
             new adminScreen().setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "please enter the corret required information");
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed

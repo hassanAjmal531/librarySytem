@@ -65,6 +65,10 @@ public class updatestudent extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         getlist.setText("get list");
         getlist.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +140,7 @@ public class updatestudent extends javax.swing.JFrame {
             conn c = new conn();
             Statement s = c.c.createStatement();
             ResultSet rs =s.executeQuery(sql);
+            
             while(rs.next()){
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.addRow(new Object[]{

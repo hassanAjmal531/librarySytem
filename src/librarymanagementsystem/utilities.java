@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -126,8 +128,8 @@ public class utilities {
     
     
     public static void main(String args[]){
-    
-        
+        System.out.println(checkInteger("03136053330"));
+        System.out.println(checkPhoneNumber("12345678912"));
         
     
     }
@@ -182,6 +184,39 @@ public class utilities {
         
         return null;
     }
+    public static boolean checkInteger(String s){
+        try{
+            
+            int i = Integer.valueOf(s);
+            return true;
+        
+        }catch(NumberFormatException e){
+            e.printStackTrace();
+            return false;
+        }
+    
+        
+    }
+    
+    public static boolean checkemail(String email){
+        String regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        
+        return matcher.matches();
+        
+    }
+    
+    public static boolean checkPhoneNumber(String phone){
+        int l = phone.length();
+        
+        return checkInteger(phone) && phone.length() == 11;
+        
+        
+        
+    
+        
+    }
     
   /*  public static String[] viewAllbooks(){
     
@@ -226,6 +261,7 @@ public class utilities {
         }catch(Exception e){
             e.printStackTrace();
         }*/
+
         
     }
     
