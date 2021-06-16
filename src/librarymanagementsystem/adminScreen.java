@@ -58,6 +58,11 @@ public class adminScreen extends javax.swing.JFrame {
         jButton9.setText("Manage Books");
 
         jButton10.setText("Manage Fines");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         quit.setText("Quit");
         quit.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +137,11 @@ public class adminScreen extends javax.swing.JFrame {
         this.rootPane.setVisible(false);
         new adminScreen().setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        new ViewAndResolveFine().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
