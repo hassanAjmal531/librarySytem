@@ -178,7 +178,7 @@ public class login extends javax.swing.JFrame {
         try{    
         Member member = new Member();
             if(member.login(Integer.valueOf(ID.getText()), Password.getText()))
-                new userScreen().setVisible(true);
+                new userScreen(Integer.valueOf(ID.getText())).setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "invalid username or password");
         }

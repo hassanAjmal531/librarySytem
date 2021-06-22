@@ -14,8 +14,10 @@ public class userScreen extends javax.swing.JFrame {
     /**
      * Creates new form userScreen
      */
-    public userScreen() {
+    private int id;
+    public userScreen(int id) {
         initComponents();
+        this.id = id;
     }
 
     /**
@@ -159,7 +161,7 @@ public class userScreen extends javax.swing.JFrame {
 
     private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
         // TODO add your handling code here:
-        new history().setVisible(rootPaneCheckingEnabled);
+        new history(this.id).setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_historyActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -169,12 +171,12 @@ public class userScreen extends javax.swing.JFrame {
 
     private void viewfineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewfineActionPerformed
         // TODO add your handling code here:
-        new MemberViewFine().setVisible(rootPaneCheckingEnabled);
+        new MemberViewFine(this.id).setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_viewfineActionPerformed
 
     private void borrowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowedActionPerformed
         // TODO add your handling code here:
-        new currentlyBorrowedBooks().setVisible(rootPaneCheckingEnabled);
+        new currentlyBorrowedBooks(this.id).setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_borrowedActionPerformed
 
     private void borrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowActionPerformed
@@ -222,7 +224,7 @@ public class userScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new userScreen().setVisible(true);
+                new userScreen(1).setVisible(true);
             }
         });
     }

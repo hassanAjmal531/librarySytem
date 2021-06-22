@@ -256,7 +256,7 @@ drop sequence aid;
 select member.id, member.fname, member.lname, member.fine from member;
 select member.id, member.fname, member.lname, member.fine from member where id = 1;
 
-update member set fine = 100 where id = 1;
+update member set fine = 100 where id = 65;
 
 
 create table borrowed(
@@ -372,10 +372,13 @@ select id, fine from member where id =1;
 select book.isbn, book.title, book.language, book.quantity, publisher.name from book, publisher where  book.isbn = publisher.book_isbn;
 select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = 1);
 
-select * from member;
-
+select * from member
+;
+delete from borrowed where book_isbn = 1;
 select * from student;
 select * from mlogin;
 select * from faculty;
 select * from book;
+select * from borrowed;
+select * from history;
 commit;

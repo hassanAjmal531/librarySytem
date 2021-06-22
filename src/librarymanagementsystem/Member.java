@@ -130,6 +130,7 @@ public class Member extends person {
                     return true;
                 else 
                     System.out.println("you have fine");
+            JOptionPane.showMessageDialog(null, "yu have some due fine, kindly clear the fine before proceeding");
                 
                     
             
