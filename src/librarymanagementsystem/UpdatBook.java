@@ -145,8 +145,10 @@ public class UpdatBook extends javax.swing.JFrame {
         
         for(String i : arr)
             System.out.println(i);
+        if(utilities.checkInteger(arr[3]))
+            new Admin().updateBook(arr);
         
-        new Admin().updateBook(arr);
+            
     }//GEN-LAST:event_updateActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed

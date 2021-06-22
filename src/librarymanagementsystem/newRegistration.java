@@ -43,6 +43,11 @@ public class newRegistration extends javax.swing.JFrame {
         });
 
         freg.setText("Faculty");
+        freg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fregActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Registration");
 
@@ -114,6 +119,11 @@ public class newRegistration extends javax.swing.JFrame {
         
         new studentRegistration().setVisible(true);
     }//GEN-LAST:event_stuRegActionPerformed
+
+    private void fregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fregActionPerformed
+        // TODO add your handling code here:
+        new FacultyRegistration().setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_fregActionPerformed
 
     /**
      * @param args the command line arguments

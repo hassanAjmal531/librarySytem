@@ -200,20 +200,31 @@ public class AddBook extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String[] details = new String[7];
-        details[0] = this.jTextField1.getText().toString();
-        details[1] = this.jTextField2.getText().toString();
-        details[2] = this.jTextField3.getText().toString();
-        details[3] = this.jTextField4.getText().toString();
-        details[4] = this.jTextField5.getText().toString();
-        details[5] = this.jTextField6.getText().toString();
-        details[6] = this.category.getText().toString();
+        boolean flag = true;
+        flag = utilities.checkInteger(this.jTextField1.getText().toString());
+        flag = utilities.checkInteger(this.jLabel6.getText().toString());
+        if(flag){
+            try{
+
+            details[0] = this.jTextField1.getText().toString();
+            details[1] = this.jTextField2.getText().toString();
+            details[2] = this.jTextField3.getText().toString();
+            details[3] = this.jTextField4.getText().toString();
+            details[4] = this.jTextField5.getText().toString();
+            details[5] = this.jTextField6.getText().toString();
+            details[6] = this.category.getText().toString();
+
+            }catch(Exception e){
+                   e.printStackTrace();
+            }
         
         
-         
-       boolean flag = new Admin().addBooks(details);
-       if(flag)
-           JOptionPane.showMessageDialog(rootPane, "Book ADDED");
         
+
+            boolean flag2 = new Admin().addBooks(details);
+            if(flag2)
+                JOptionPane.showMessageDialog(rootPane, "Book ADDED");
+        } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
