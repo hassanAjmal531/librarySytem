@@ -128,12 +128,7 @@ public class utilities {
     
     
     
-    public static void main(String args[]){
-        System.out.println(checkInteger("03136053330"));
-        System.out.println(checkPhoneNumber("12345678912"));
-        
     
-    }
     
     public static String DateToString(Date date){
         
