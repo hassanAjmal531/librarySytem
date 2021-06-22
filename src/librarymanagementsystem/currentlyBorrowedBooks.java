@@ -125,9 +125,7 @@ public class currentlyBorrowedBooks extends javax.swing.JFrame {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4)
-                     
                     
-
 
                     });
             }

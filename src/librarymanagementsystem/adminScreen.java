@@ -56,6 +56,11 @@ public class adminScreen extends javax.swing.JFrame {
         jButton6.setText("Manage Members");
 
         jButton9.setText("Manage Books");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Manage Fines");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +147,11 @@ public class adminScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ViewAndResolveFine().setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        new managebooks().setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

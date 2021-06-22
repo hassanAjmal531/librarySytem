@@ -7,6 +7,7 @@ package librarymanagementsystem;
 
 import java.sql.ResultSet;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +21,8 @@ public class searchbook extends javax.swing.JFrame {
      */
     public searchbook() {
         initComponents();
+        this.jComboBox1.addItem("isbn");
+        this.jComboBox1.addItem("name");
         
     }
 
@@ -141,14 +144,23 @@ public class searchbook extends javax.swing.JFrame {
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         int isbn;
-        String name;
+        String name = "";
+        String arr[] = new String[7];
         
-        if(this.jComboBox1.getSelectedItem().toString().equals("name"))
-        isbn = Integer.valueOf(enter.getText());
+        if(this.jComboBox1.getSelectedItem().toString().equals("isbn"))
+        {
+            isbn = Integer.valueOf(enter.getText());
+            arr = utilities.searchByISBN(isbn);
+        }
+        if(this.jComboBox1.getSelectedItem().toString().equals("name")){
+            name = this.enter.getText();
+            arr = utilities.searchByName(name);
+        }
+            
         
         //String arr [] =utilities.searchByISBN(isbn);
-        String arr[] = utilities.searchByName("harry potter v1");
         
+        try{
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.addRow(new Object[]{
                     Integer.valueOf(arr[0]),
@@ -163,6 +175,11 @@ public class searchbook extends javax.swing.JFrame {
                 
                 
                 });
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "no book of this title exists");
+        
+        }
             
     }//GEN-LAST:event_searchActionPerformed
 

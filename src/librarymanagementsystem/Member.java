@@ -68,7 +68,12 @@ public class Member extends person {
             if(checkAvailabilty(c, isbn))
                 if(checkfine(c, id)){
                 quantity = checkQuantity(c,isbn);
-                this.issueBook(c, id, password, isbn,quantity, title);
+                    if(quantity >=0){
+                        this.issueBook(c, id, password, isbn,quantity, title);
+                        return true;
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "book is not available");
                 }
                    
         }
@@ -100,9 +105,11 @@ public class Member extends person {
             PreparedStatement stmt = c.c.prepareStatement("select quantity from book where isbn = ?");
             stmt.setInt(1, isbn);
             ResultSet rs= stmt.executeQuery();
-            if(rs.next())
+            if(rs.next()){
+                int quantity = rs.getInt(1);
                 if(rs.getInt(1)>= 1)
                     return rs.getInt(1)-1;
+            }   
                     
                 
         }catch(Exception e){
@@ -186,7 +193,7 @@ public class Member extends person {
         if(days == 0 || days < 0)
             fine = 0;
         else
-            fine = this.calculateFine(days);
+            fine = this.calculateFine(days, id);
         
         conn c = new conn();
         int quantity = this.getQuantity(c, isbn) +1;
@@ -261,8 +268,21 @@ public class Member extends person {
         
         return null;
     }
-    private int calculateFine(int days){
-        return 100 *days;
+    private int calculateFine(int days, int id){
+        int fine = 0;
+        try{
+            conn c = new conn();
+            
+            PreparedStatement s = c.c.prepareStatement(String.format("select fine from member where id = %d",id));
+            ResultSet rs = s.executeQuery();
+            if(rs.next()){
+                fine  = rs.getInt(1);
+            }
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 100 *days + fine;
         
     }
     
@@ -427,7 +447,17 @@ public class Member extends person {
         
        
     }
+    private boolean checkBook(int isbn){
+        try{
+            
+        
+        }catch(Exception e){
+        
+        }
     
+        return false;
+        
+    }
     
     
 }

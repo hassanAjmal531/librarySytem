@@ -15,7 +15,7 @@ insert into roles (role, employee_id) values ('admin',2);
 insert into roles (role, employee_id) values ('staff',3);
 
 select * from roles;
-
+select * from book;
 
 select employee.id, employee.fname, emplogin.password from employee, emplogin,roles where employee.id = 1 and emplogin.employee_id = 1 and roles.employee_id =1 and roles.role = 'admin';
 
@@ -39,13 +39,14 @@ select * from fine;
 
 insert into fine (amount, member_id) values (1000,1);
 
-
+delete from student;
 insert into student (id, rnum, degree, semester) values(1, 1,'bcs','1');
-insert into student (id, rnum, degree, semester) values(4, 2,'bcs','4');
+insert into student (id, rnum, degree, semester) values(2, 2,'bcs','4');
 
 insert into faculty (id, fid_1, department) values (4, 1,'computer science');
 insert into faculty (id, fid_1, department) values (3, 2,'computer science');
 select * from faculty;
+delete from faculty;
 
 select * from member, student where member.id = student.id;
 select * from member, faculty where member.id = faculty.id;
@@ -60,17 +61,21 @@ insert into book (isbn, title, language, quantity) VALUES(1,'harry potter v1', '
 insert into book (isbn, title, language, quantity) VALUES(2,'harry potter v2', 'ennglish','1');
 insert into book (isbn, title, language, quantity) VALUES(3,'harry potter v3', 'ennglish','1');
 insert into book (isbn, title, language, quantity) VALUES(4,'harry potter v4', 'ennglish','1');
-
+insert into book (isbn, title, language, quantity) VALUES(6,'art of knife making', 'ennglish','1');
 
 alter table book drop COLUMN returndate;
 
 select * from haspublisher;
 insert into haspublisher (book_isbn, publisher_name) values (1,'abc');
 
-insert into publisher (book_isbn, pid,name) values (1,5,'p2');
-insert into publisher (book_isbn, pid,name) values (3,3,'p3');
-insert into publisher (book_isbn, pid,name) values (4,4,'p4');
-
+insert into publisher (book_isbn,name) values (1,'p2');
+insert into publisher (book_isbn,name) values (2,'p3');
+insert into publisher (book_isbn,name) values (3,'p4');
+insert into publisher (book_isbn,name) values (4,'p3');
+insert into publisher (book_isbn,name) values (5,'p4');
+insert into publisher (book_isbn, name) values (6, 'hassan');
+insert into publisher (book_isbn, name) values (7, 'abc');
+delete from publisher;
 
 select * from publisher;
 
@@ -208,6 +213,9 @@ insert into hascategory (bookid, booktitle, cid) values (2,'harry potter v2', 2)
 insert into hascategory (bookid, booktitle, cid) values (3,'harry potter v3', 1);
 insert into hascategory (bookid, booktitle, cid) values (4,'harry potter v4', 1);
 insert into hascategory (bookid, booktitle, cid) values (4,'harry potter v4', 2);
+insert into hascategory (bookid, booktitle, cid) values (5,'aqua scaping', 1);
+insert into hascategory (bookid, booktitle, cid) values (6,'art of knife making', 2);
+insert into hascategory (bookid, booktitle, cid) values (7,'the art of aquascaping', 2);
 
 
 insert into categoryhasbooks(id, bookid) values (1,1);
@@ -221,8 +229,13 @@ insert into hasauthor (book_isbn, title, author_id) values (1,'harry potter v1',
 insert into hasauthor (book_isbn, title, author_id) values (2,'harry potter v2',2);
 insert into hasauthor (book_isbn, title, author_id) values (3,'harry potter v3',4);
 insert into hasauthor (book_isbn, title, author_id) values (2,'harry potter v2',3);
+insert into hasauthor (book_isbn, title, author_id) values (4,'harry potter v4',2);
+insert into hasauthor (book_isbn, title, author_id) values (5,'aqua scaping',4);
+insert into hasauthor (book_isbn, title, author_id) values (6,'art of knife making',3);
+insert into hasauthor (book_isbn, title, author_id) values (7,'the art of aquascaping',2);
 
-
+select * from book;
+delete from author where id = 8;
 select  listagg(author.name, ', ') from author where author.id in (select hasauthor.author_id from hasauthor, book where book.isbn = hasauthor.book_isbn  and book.isbn = 1) ;
 select listagg(category.cname,', ') from category where category.id in (select hascategory.cid from hascategory, book where book.isbn = hascategory.bookid and book.isbn = 2);
 
@@ -364,4 +377,5 @@ select * from member;
 select * from student;
 select * from mlogin;
 select * from faculty;
+select * from book;
 commit;

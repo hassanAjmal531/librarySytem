@@ -202,7 +202,7 @@ public class AddBook extends javax.swing.JFrame {
         String[] details = new String[7];
         boolean flag = true;
         flag = utilities.checkInteger(this.jTextField1.getText().toString());
-        flag = utilities.checkInteger(this.jLabel6.getText().toString());
+        flag = utilities.checkInteger(this.jTextField6.getText().toString());
         if(flag){
             try{
 

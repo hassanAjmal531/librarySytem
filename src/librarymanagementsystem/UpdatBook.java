@@ -5,6 +5,7 @@
  */
 package librarymanagementsystem;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -146,7 +147,8 @@ public class UpdatBook extends javax.swing.JFrame {
         for(String i : arr)
             System.out.println(i);
         if(utilities.checkInteger(arr[3]))
-            new Admin().updateBook(arr);
+            if(new Admin().updateBook(arr))
+                JOptionPane.showMessageDialog(null, "book updated");
         
             
     }//GEN-LAST:event_updateActionPerformed

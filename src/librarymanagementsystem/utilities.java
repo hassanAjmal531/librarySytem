@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,7 +98,7 @@ public class utilities {
                     values[6] = rs.getString(1);
                 
             }else{
-                System.out.println("dfg");
+                JOptionPane.showMessageDialog(null, "no book of this name exists");
             }
             return values;
             
@@ -192,10 +193,10 @@ public class utilities {
         
         }catch(NumberFormatException e){
             e.printStackTrace();
-            return false;
+            JOptionPane.showMessageDialog(null, "isbn and quantity must be in digits");
         }
     
-        
+        return false;
     }
     
     public static boolean checkemail(String email){

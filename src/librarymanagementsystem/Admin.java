@@ -48,6 +48,11 @@ public class Admin extends person {
                       return true;
                       
                   }
+                  else{
+                      JOptionPane.showMessageDialog(null, "invalid user name or password");
+                  }
+              }else{
+                  JOptionPane.showMessageDialog(null, "invalid id");
               }
               
               
@@ -60,10 +65,10 @@ public class Admin extends person {
     
     public boolean registerStudent(student s){
         PreparedStatement stmt;
-         
+         conn c = new conn();
         try{
             String sql = "insert into member (id, fname,lname, email, contact_address, address,fine) values(?,?,?,?,?,?,0)";
-            stmt = conn.c.prepareStatement(sql);
+            stmt = c.c.prepareStatement(sql);
             stmt.setInt(1, s.id);
             stmt.setString(2,s.fname);
             stmt.setString(3,s.lname);
