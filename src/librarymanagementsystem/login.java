@@ -19,6 +19,16 @@ public class login extends javax.swing.JFrame {
     
     public login() {
         initComponents();
+        try{
+            PreparedStatement s = conn.c.prepareStatement("select text from news" );
+            ResultSet rs = s.executeQuery();
+            if(rs.next())
+                this.jTextArea1.append(rs.getString(1));
+            String abc = rs.getString(1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
 
     /**

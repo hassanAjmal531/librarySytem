@@ -155,7 +155,7 @@ public class userScreen extends javax.swing.JFrame {
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-        new searchbook().setVisible(rootPaneCheckingEnabled);
+        new searchbook(this.id).setVisible(rootPaneCheckingEnabled);
         
     }//GEN-LAST:event_searchActionPerformed
 

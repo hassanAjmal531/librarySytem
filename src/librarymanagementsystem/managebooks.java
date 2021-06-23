@@ -129,7 +129,7 @@ public class managebooks extends javax.swing.JFrame {
 
     private void searhbooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searhbooksActionPerformed
         // TODO add your handling code here:
-        new searchbook().setVisible(true);
+        new searchbook(true).setVisible(true);
     }//GEN-LAST:event_searhbooksActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

@@ -80,7 +80,7 @@ public class Admin extends person {
             
             
             sql = "insert into mlogin (password, member_id) values (?,?)";
-            stmt = conn.c.prepareStatement(sql);
+            stmt = c.c.prepareStatement(sql);
             stmt.setString(1, s.password);
             stmt.setInt(2, s.id);
             stmt.execute();
@@ -88,7 +88,7 @@ public class Admin extends person {
             
             
             sql = "insert into student (id, rnum, degree, semester) values(?,?,?,?)";
-            stmt = conn.c.prepareStatement(sql);
+            stmt = c.c.prepareStatement(sql);
             stmt.setInt(1, s.id);
             stmt.setInt(2, s.regNUmber);
             stmt.setString(3, s.degree);
@@ -107,9 +107,10 @@ public class Admin extends person {
     
     public boolean RegisterFaculty(faculty f){
         PreparedStatement stmt;
+        conn c = new conn();
         try{
             String sql = "insert into member (id, fname,lname, email, contact_address, address,fine) values(?,?,?,?,?,?,0 )";
-            stmt = conn.c.prepareStatement(sql);
+            stmt = c.c.prepareStatement(sql);
             stmt.setInt(1,f.id);
             stmt.setString(2,f.fname);
             stmt.setString(3,f.lname);
@@ -120,13 +121,13 @@ public class Admin extends person {
             stmt.execute();
             
             sql = "insert into mlogin (password, member_id) values (?,?)";
-            stmt = conn.c.prepareStatement(sql);
+            stmt = c.c.prepareStatement(sql);
             stmt.setString(1, f.password);
             stmt.setInt(2, f.id);
             stmt.execute();
             
             sql = "insert into faculty (id, fid_1, department) values (?, ?,?)";
-            stmt = conn.c.prepareStatement(sql);
+            stmt = c.c.prepareStatement(sql);
             stmt.setInt(1,f.id );
             stmt.setInt(2, f.fid);
             stmt.setString(3, f.departement);
