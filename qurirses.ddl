@@ -381,4 +381,6 @@ select * from faculty;
 select * from book;
 select * from borrowed;
 select * from history;
+insert into news values(1,'library will be closed today');
+select * from news;
 commit;

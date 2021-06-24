@@ -227,7 +227,7 @@ public class FacultyRegistration extends javax.swing.JFrame {
         
         if(new Admin().RegisterFaculty(new faculty(fid, id, department, fn, ln,  semail, contac, Address, password))){
             this.check = JOptionPane.OK_OPTION;
-            JOptionPane.showMessageDialog(rootPane, "student successfully registered");
+            JOptionPane.showMessageDialog(rootPane, "faculty successfully registered");
             new newRegistration().setVisible(true);
         }
         }catch(Exception e){

@@ -66,7 +66,7 @@ public class UpdatBook extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "isbn", "TItle", "language", "qauntity", "publisher", "author", "category"
             }
         ) {
             Class[] types = new Class [] {
