@@ -207,8 +207,10 @@ public class FacultyRegistration extends javax.swing.JFrame {
             new newRegistration().setVisible(true);
         else{
             int check = JOptionPane.showConfirmDialog(rootPane, "do you want to cancel the registration?");
-            if(check == JOptionPane.OK_OPTION)
+            if(check == JOptionPane.OK_OPTION){
                 new newRegistration().setVisible(true);
+                this.dispose();
+            }
          }
     }//GEN-LAST:event_backActionPerformed
 

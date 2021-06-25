@@ -201,6 +201,7 @@ public class login extends javax.swing.JFrame {
     private void adminloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminloginActionPerformed
         // TO your handling code here:
         new AdminLogin().setVisible(rootPaneCheckingEnabled);
+        this.dispose();
     }//GEN-LAST:event_adminloginActionPerformed
 
     private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed

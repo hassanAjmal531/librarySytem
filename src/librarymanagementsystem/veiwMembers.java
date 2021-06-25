@@ -144,7 +144,7 @@ public class veiwMembers extends javax.swing.JFrame {
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
-        this.rootPane.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_closeActionPerformed
 
     /**
