@@ -25,7 +25,7 @@ public class history extends javax.swing.JFrame {
     
     public history(int id){
         initComponents();
-        this.userId = 1;
+        this.userId = id;
     }
 
     /**

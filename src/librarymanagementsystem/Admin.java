@@ -597,8 +597,9 @@ public class Admin extends person {
             
             e.printStackTrace();
             System.out.println("cannot delete the account member must first return all the borrowed books");
+            return false;
         }
-        return false;
+        
     }
     
     private int checkMemberType(int id){

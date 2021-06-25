@@ -383,4 +383,12 @@ select * from borrowed;
 select * from history;
 insert into news values(1,'library will be closed today');
 select * from news;
+select * from author;
+select * from hasauthor;
+insert into hascategory values(6,'art of knife making',1 );
+select * from category;
+select * from hascategory;
+select * from history;
+
+select * from history where member_id = 2;
 commit;

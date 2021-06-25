@@ -36,6 +36,7 @@ public class Member extends person {
     public void logout(){}
     public boolean login(int id, String password){
         PreparedStatement s;
+        conn c = new conn();
         
           try{
               ResultSet rs;
@@ -359,7 +360,7 @@ public class Member extends person {
     
     public ResultSet displayFine(int id){
         try{
-            String sql = String.format("select id, fine from member where id =1",id) ;
+            String sql = String.format("select id, fine from member where id =%d",id) ;
             Statement s = new conn().c.createStatement();
             
             

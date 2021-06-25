@@ -20,7 +20,8 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
         try{
-            PreparedStatement s = conn.c.prepareStatement("select text from news" );
+            conn c = new conn();
+            PreparedStatement s = c.c.prepareStatement("select text from news" );
             ResultSet rs = s.executeQuery();
             if(rs.next())
                 this.jTextArea1.append(rs.getString(1));
@@ -187,8 +188,10 @@ public class login extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         try{    
         Member member = new Member();
-            if(member.login(Integer.valueOf(ID.getText()), Password.getText()))
+            if(member.login(Integer.valueOf(ID.getText()), Password.getText())){
                 new userScreen(Integer.valueOf(ID.getText())).setVisible(true);
+                this.dispose();
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "invalid username or password");
         }

@@ -24,8 +24,8 @@ public class searchbook extends javax.swing.JFrame {
         
     public searchbook(int id) {
         initComponents();
-        this.jComboBox1.addItem("isbn");
-        this.jComboBox1.addItem("name");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "isbn", "name" }));
+        
         this.id = id;
         
     }
@@ -35,6 +35,7 @@ public class searchbook extends javax.swing.JFrame {
         this.jComboBox1.addItem("isbn");
         this.jComboBox1.addItem("name");
         this.flag = flag;
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "isbn", "name" }));
     }
     
 
@@ -211,10 +212,14 @@ public class searchbook extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         boolean flag = this.flag;
-        if(flag)
+        if(flag){
             new managebooks().setVisible(true);
-        else
+            this.dispose();
+        }
+        else{
             new userScreen(this.id).setVisible(true);
+            this.dispose();
+        }
             
             
     }//GEN-LAST:event_jButton1ActionPerformed

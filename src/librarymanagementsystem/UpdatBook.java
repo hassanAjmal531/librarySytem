@@ -180,8 +180,8 @@ public class UpdatBook extends javax.swing.JFrame {
                     arr[2],
                     Integer.valueOf(arr[3]),
                     arr[4],
-                    arr[6],
-                    arr[5]
+                    arr[5],
+                    arr[6]
                 
                 
                 

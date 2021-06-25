@@ -6,6 +6,7 @@
 package librarymanagementsystem;
 
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -149,8 +150,13 @@ public class returnBook extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Date date = this.jDateChooser2.getDate();
+        try{
         new Member().returnBook(Integer.valueOf(this.jTextField1.getText()), Integer.valueOf(this.jTextField2.getText()),this.jTextField3.getText(), utilities.DateToString(date));
-        
+        JOptionPane.showMessageDialog(rootPane, "book returned");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

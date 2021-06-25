@@ -120,7 +120,7 @@ public class veiwMembers extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try{
-        ResultSet rs = utilities.displayBook();
+        ResultSet rs = new Admin().viewAllMembers();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (rs.next()){
@@ -132,6 +132,7 @@ public class veiwMembers extends javax.swing.JFrame {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6)
+                        
                     
 
 
@@ -144,7 +145,9 @@ public class veiwMembers extends javax.swing.JFrame {
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
+        new manageMembers().setVisible(rootPaneCheckingEnabled);
         this.dispose();
+        
     }//GEN-LAST:event_closeActionPerformed
 
     /**

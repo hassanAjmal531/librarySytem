@@ -5,6 +5,8 @@
  */
 package librarymanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dell
@@ -97,12 +99,19 @@ public class deleteMember extends javax.swing.JFrame {
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
         // TODO add your handling code here:
         
-        new Admin().deleteAccount(Integer.valueOf(this.jTextField1.getText()));
+       if( new Admin().deleteAccount(Integer.valueOf(this.jTextField1.getText()))){
+           JOptionPane.showMessageDialog(rootPane, "deleted");
+       }
+       else{
+          JOptionPane.showMessageDialog(rootPane, "user must return the borrowed books and clear fines before deletion"); 
+       }
     }//GEN-LAST:event_delActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        new adminScreen().setVisible(rootPaneCheckingEnabled);
         this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
