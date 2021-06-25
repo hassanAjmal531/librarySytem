@@ -130,30 +130,36 @@ public class managebooks extends javax.swing.JFrame {
     private void searhbooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searhbooksActionPerformed
         // TODO add your handling code here:
         new searchbook(true).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_searhbooksActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         new adminScreen().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     private void addbooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbooksActionPerformed
         // TODO add your handling code here:
         new AddBook().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_addbooksActionPerformed
 
     private void delbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delbookActionPerformed
         // TODO add your handling code here:
         new deletebook().setVisible(rootPaneCheckingEnabled);
+        this.dispose();
     }//GEN-LAST:event_delbookActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         new UpdatBook().setVisible(rootPaneCheckingEnabled);
+        this.dispose();
     }//GEN-LAST:event_updateActionPerformed
 
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         // TODO add your handling code here:
         new viewBooks().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_viewActionPerformed
 
     /**

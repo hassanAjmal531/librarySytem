@@ -143,8 +143,10 @@ public class AdminLogin extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         Admin admin = new Admin();
         try{
-        if(admin.login(Integer.valueOf(ID.getText()), Uname.getText(), Password.getText()))
-            new adminScreen().setVisible(true);
+            if(admin.login(Integer.valueOf(ID.getText()), Uname.getText(), Password.getText())){
+                new adminScreen().setVisible(true);
+                this.dispose();
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "please enter the corret required information");
         }
@@ -158,6 +160,7 @@ public class AdminLogin extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         new login().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     /**

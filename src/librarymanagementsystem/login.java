@@ -210,8 +210,9 @@ public class login extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-        this.rootPane.setVisible(false);
+        
         new mainPage().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     /**

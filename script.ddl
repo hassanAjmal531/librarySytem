@@ -165,25 +165,17 @@ ALTER TABLE faculty
     ADD CONSTRAINT faculty_member_fk FOREIGN KEY ( id )
         REFERENCES member ( id );
 
-ALTER TABLE fine
-    ADD CONSTRAINT fine_member_fk FOREIGN KEY ( member_id )
-        REFERENCES member ( id );
+
 
 ALTER TABLE has_author
-    ADD CONSTRAINT has_author_author_fk FOREIGN KEY ( author_authorname )
-        REFERENCES author ( authorname );
+    ADD CONSTRAINT has_author_author_fk FOREIGN KEY ( author_id )
+        REFERENCES author ( id );
 
 ALTER TABLE has_author
     ADD CONSTRAINT has_author_book_fk FOREIGN KEY ( book_isbn )
         REFERENCES book ( isbn );
 
-ALTER TABLE haspublisher
-    ADD CONSTRAINT haspublisher_book_fk FOREIGN KEY ( book_isbn )
-        REFERENCES book ( isbn );
 
-ALTER TABLE haspublisher
-    ADD CONSTRAINT haspublisher_publisher_fk FOREIGN KEY ( publisher_name )
-        REFERENCES publisher ( name );
 
 ALTER TABLE history
     ADD CONSTRAINT history_member_fk FOREIGN KEY ( member_id )

@@ -122,21 +122,25 @@ public class manageMembers extends javax.swing.JFrame {
     private void updateStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentsActionPerformed
         // TODO add your handling code here:
         new updatestudent().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_updateStudentsActionPerformed
 
     private void viewmembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewmembersActionPerformed
         // TODO add your handling code here:
         new veiwMembers().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_viewmembersActionPerformed
 
     private void updateFacultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFacultyActionPerformed
         // TODO add your handling code here:
         new updateMember().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_updateFacultyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         new adminScreen().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

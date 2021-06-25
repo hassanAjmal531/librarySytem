@@ -82,8 +82,9 @@ public class mainPage extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        this.rootPane.setVisible(false);
+       
         new login().setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_loginActionPerformed
 

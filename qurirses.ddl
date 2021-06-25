@@ -90,7 +90,7 @@ insert into author (id,name) values(4,'a2');
 
 select * from hasAuthor;
 insert into hasAuthor (book_isbn, author_id) values (1,1);
-insert into hasAuthor (book_isbn, author_id) values (1,2);
+insert into hasAuthor (book_isbn, author_id) values (4,2);
 insert into hasAuthor (book_isbn, author_id) values (2,1);
 insert into hasAuthor (book_isbn, author_id) values (3,4);
 
